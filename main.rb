@@ -13,7 +13,7 @@ configure do
 	require 'ostruct'
 	Shorten = OpenStruct.new(
 		:base_url => ENV['url'],
-		:service_name => "101th.name",
+		:service_name => "108th.name",
 		:button_text => "&#x27bc;",
 		:path_size => 4
 	)
