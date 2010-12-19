@@ -5,5 +5,5 @@ gem "sinatra"
 gem "sequel"
 gem "anybase"
 gem "aws-s3"
-gem "sass"
+gem "haml"
 
