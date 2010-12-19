@@ -24,7 +24,7 @@ class ShortenUrl < Sequel::Model
 		"#{Shorten.base_url}#{self.key.to_s}"
 	end
 	
-	def self.create_url(link, image = false)
+	def self.create_url(link)
  		uri = URI::parse(link)
  		raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
 
@@ -39,7 +39,7 @@ class ShortenUrl < Sequel::Model
 				key_check = self.filter(:url => key).first
 			end
 	
-			url = self.new(:url => link, :key => key, :image => image)
+			url = self.new(:url => link, :key => key)
 			url.save					
 		end
 		
