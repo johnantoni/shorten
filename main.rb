@@ -27,7 +27,7 @@ require 'shortenurl'
 
 helpers do
 	def show_information
-		erb :information, :layout => false
+		haml :information, :layout => false
 	end
 
 	def validate_link(link)
@@ -66,7 +66,7 @@ end
 
 get '/' do
 	@information = show_information
-	erb :new, :locals => { :type => "main" }
+	haml :new, :locals => { :type => "main" }
 end
 
 get %r(/(api-){0,1}create/(.*)) do |api, link|
@@ -77,7 +77,7 @@ get %r(/(api-){0,1}create/(.*)) do |api, link|
 	if api == "api-"
 		"#{url.short_url}"
 	else
-		erb :finished, :locals => { :url => url, :type => "finished" }
+		haml :finished, :locals => { :url => url, :type => "finished" }
 	end
 end
 
@@ -88,7 +88,7 @@ get %r(/(api-){0,1}create) do |api|
 		if api == "api-"
 			"#{url.short_url}"
 		else
-			erb :finished, :locals => { :url => url, :type => "finished" }
+			haml :finished, :locals => { :url => url, :type => "finished" }
 		end
 	end
 end
@@ -98,7 +98,7 @@ post '/' do
 
 	url = ShortenUrl.create_url(params[:url])
 	
-	erb :finished, :locals => { :url => url, :type => "finished" }
+	haml :finished, :locals => { :url => url, :type => "finished" }
 end
 
 get '/:short' do
@@ -107,10 +107,5 @@ get '/:short' do
 	
 	halt 404, "Page not found" unless url
 	
-	if url.image == true 
-	  erb :image, :locals => {:url => url.url}
-	else
-	  redirect url.url
-	end
-
+  redirect url.url
 end

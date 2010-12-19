@@ -1,0 +1,7 @@
+%p{:style => "margin-top:100px;"} Shorten URL
+- formtext = "Type URL. Press Enter."
+%form{:action => "/", :method => "POST"}
+  %input#url{:name => "url", :onblur => "if ( this.value=='' ) { this.value = '#{formtext}'; }", :onfocus => "if ( this.value=='#{formtext}' ) { this.value = ''; }", :size => "30", :type => "text", :value => formtext}/
+  %br/
+  %input#create_url{:type => "hidden", :value => Shorten.button_text}/
+= @information
